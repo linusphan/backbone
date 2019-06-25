@@ -200,3 +200,111 @@ myTodo.set({
   title: 'Changing more than one attribute at the same time only triggers the listener once.',
   completed: true,
 });
+
+var Todo = Backbone.Model.extend({
+  defaults: {
+    title: '',
+    completed: false,
+  },
+
+  initialize: function () {
+    console.log('This model has been initialized.');
+    this.on('change:title', function () {
+      console.log('Title value for this model has changed.');
+    });
+  },
+
+  setTitle: function (newTitle) {
+    this.set({ title: newTitle });
+  },
+});
+
+var myTodo = new Todo();
+
+myTodo.set('title', 'Check what\'s logged.');
+myTodo.setTitle('Go fishing on Sunday.');
+myTodo.set('completed', true);
+console.log('Todo set as completed ' + myTodo.get('completed'));
+
+var Person = new Backbone.Model({ name: 'Jeremy' });
+Person.validate = function(attrs) {
+  if (!attrs.name) {
+    return 'I need your name';
+  }
+};
+
+Person.set({name: 'Samuel'});
+console.log(Person.get('name'));
+Person.unset('name', {validate: true});
+
+var Todo = Backbone.Model.extend({
+  defaults: {
+    completed: false,
+  },
+
+  validate: function (attributes) {
+    if (attributes.title === undefined) {
+      return 'Remember to set a title for your todo.';
+    }
+  },
+
+  initialize: function () {
+    console.log('This model has been initialized.');
+    this.on('invalid', function (model, error) {
+      console.log(error);
+    });
+  },
+});
+
+var MyModel = Backbone.Model.extend({
+  validate: function (attribs) {
+    if (attribs.hasOwnProperty('myString')) {
+      attribs.myString = attribs.myString.trim();
+    }
+
+    if (attribs.hasOwnProperty('myNumber')) {
+      attribs.myNumber = 43;
+    }
+
+    if (attribs.hasOwnProperty('myBoolean')) {
+      attribs.myBoolean = false;
+    }
+
+    if (attribs.hasOwnProperty('myObject')) {
+      attribs.myObject.foo = 'baz';
+    }
+  },
+});
+
+var someInstance = new MyModel();
+var attribs = {
+  myString: ' Is an untrimmed String ',
+  myNumber: 42,
+  myBoolean: true,
+  myObject: {
+    foo: 'bar',
+  },
+};
+
+someInstance.set(attribs, {validate: true});
+/*
+string not trimmed
+number is 42 still
+boolean unchanged
+outputs baz
+*/
+
+function modifiesObject(obj) {
+  obj.myString = obj.myString.trim();
+  obj.myNumber = 43;
+  obj.myBoolean = false;
+  obj.myObject.foo = 'baztopia';
+}
+
+modifiesObject(attribs);
+/*
+no hasOwnProperty checks and so changes the object
+*/
+
+var emptyTodo = new Todo(null, {validate: true});
+console.log(emptyTodo.validationError);
