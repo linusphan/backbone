@@ -8,3 +8,4 @@ and Handlebars.js.
 # Resources
 
 * [Developing Backbone.js Applications](https://addyosmani.com/backbone-fundamentals/)
+* [Backbone API](https://backbonejs.org/)
