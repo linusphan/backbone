@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title></title>
+    <meta charset="utf-8">
+
+    <script src="assets/jquery-3.4.1.js"></script>
+    <script src="assets/underscore.js"></script>
+    <script src="assets/backbone.js"></script>
+    <script src="assets/handlebars-v4.1.2.js"></script>
+  </head>
+  <body>
+    <script id="users" type="text/template">
+      {{#each users}}
+        <article id="user_{{id}}">
+          <h1><a href="http://{{website}}">{{name}}</a></h1>
+          <h2><a href="mailto:{{email}}">{{email}}</a></h2>
+
+          <dl>
+            <dt>User name</dt>
+            <dd>{{username}}</dd>
+
+            <dt>Company</dt>
+            <dd>{{companyName}}</dd>
+          </dl>
+        </article>
+      {{/each}}
+    </script>
+
+    <script src="collections_exercises_3.js"></script>
+  </body>
+</html>

@@ -1,7 +1,7 @@
 // using async false property for clearer debugging purposes here only
 
 var User = Backbone.Model.extend({
-  urlRoot: "http://jsonplaceholder.typicode.com/users",
+  url: "http://jsonplaceholder.typicode.com/users",
 });
 
 // var Users = Backbone.Collection.extend({
