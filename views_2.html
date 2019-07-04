@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title></title>
+    <meta charset="utf-8">
+
+    <script src="assets/jquery-3.4.1.js"></script>
+    <script src="assets/underscore.js"></script>
+    <script src="assets/backbone.js"></script>
+  </head>
+  <body>
+    <div id="todo">
+    </div>
+
+    <script type="text/template" id="item-template">
+      <div>
+        <input id="todo_complete" type="checkbox" <%= completed ? 'checked="checked"' : '' %>>
+        <%= title %>
+      </div>
+    </script>
+
+    <script src="views_2.js"></script>
+  </body>
+</html>
