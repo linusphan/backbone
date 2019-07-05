@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>views 3</title>
+    <meta charset="utf-8">
+
+    <script src="assets/jquery-3.4.1.js"></script>
+    <script src="assets/handlebars-v4.1.2.js"></script>
+    <script src="assets/underscore.js"></script>
+    <script src="assets/backbone.js"></script>
+  </head>
+  <body>
+    <form action="" method="post">
+      <fieldset>
+        <label>Title</label>
+        <input type="text" name="title">
+        <label>body</label>
+        <textarea rows="8" cols="80" name="body"></textarea>
+        <input type="submit" value="Ceate Post">
+      </fieldset>
+    </form>
+    <main></main>
+
+    <script id="posts_template" type="text/x-handlebars">
+      {{#each posts}}
+        <article id="posts_{{id}}">
+          {{> post}}
+        </article>
+      {{/each}}
+    </script>
+
+    <script id="post" type="text/x-handlebars">
+      <h1>{{title}}</h1>
+      <p>{{body}}</p>
+    </script>
+
+    <script src="views_3.js"></script>
+  </body>
+</html>
